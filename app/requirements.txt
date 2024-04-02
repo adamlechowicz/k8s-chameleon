@@ -1,7 +1,0 @@
-Flask
-numpy
-tensorflow==2.14.0
-Pillow
-numpy
-pandas
-psutil
