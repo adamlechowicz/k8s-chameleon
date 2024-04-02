@@ -1,6 +1,6 @@
 # Deploy a Kubernetes cluster
 
-This profile creates a Kubernetes cluster with Kubespray, either at KVM@TACC on [Chameleon](https://chameleoncloud.org/) or on [FABRIC](https://portal.fabric-testbed.net/). 
+This profile creates a Kubernetes cluster with Kubespray, either at KVM@TACC on [Chameleon](https://chameleoncloud.org/) or on [FABRIC](https://portal.fabric-testbed.net/). (Note: [CloudLab](https://www.cloudlab.us/) has an [officially supported profile](https://www.cloudlab.us/p/emulab-ops/k8s) for deploying a Kubernetes cluster.)
 
 It uses 3 `m1.large` VMs (and 1 floating IP, if you are using Chameleon).
 
