@@ -27,10 +27,10 @@ remote.run("source myenv/bin/activate; cd kubespray; pip3 install -r requirement
 ```python
 # copy config files to correct locations
 remote.run("mv kubespray/inventory/sample kubespray/inventory/mycluster")
-remote.run("git clone https://github.com/teaching-on-testbeds/k8s-ml.git")
-remote.run("cp k8s-ml/config/k8s-cluster.yml kubespray/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml")
-remote.run("cp k8s-ml/config/inventory.py    kubespray/contrib/inventory_builder/inventory.py")
-remote.run("cp k8s-ml/config/addons.yml      kubespray/inventory/mycluster/group_vars/k8s_cluster/addons.yml")
+remote.run("git clone https://github.com/teaching-on-testbeds/k8s.git")
+remote.run("cp k8s/config/k8s-cluster.yml kubespray/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml")
+remote.run("cp k8s/config/inventory.py    kubespray/contrib/inventory_builder/inventory.py")
+remote.run("cp k8s/config/addons.yml      kubespray/inventory/mycluster/group_vars/k8s_cluster/addons.yml")
 ```
 :::
 
@@ -112,7 +112,7 @@ remote.run("docker run -d -p 5000:5000 --restart always --name registry registry
 # set up docker configuration on all the hosts
 for physical_ip in physical_ips:
     remote_worker = chi.ssh.Remote(physical_ip, gateway=remote)
-    remote_worker.run("sudo wget https://raw.githubusercontent.com/teaching-on-testbeds/k8s-ml/main/config/daemon.json -O /etc/docker/daemon.json")
+    remote_worker.run("sudo wget https://raw.githubusercontent.com/teaching-on-testbeds/k8s/main/config/daemon.json -O /etc/docker/daemon.json")
     remote_worker.run("sudo service docker restart")
 
 ```
@@ -161,20 +161,3 @@ Alternatively, you can use your local terminal to log on to each node, if you pr
 
 :::
      
-
-::: {.cell .markdown}
-
-You can also use `scp` to transfer a file to the remote host from your local terminal. Later in this exercise, you will want to transfer a file named `model.keras` to the directory `~/k8s-ml/app/` on this remote host. If your private key is in `~/.ssh/id_rsa_chameleon`, you would:
-
-* open a *local* terminal on your own device in the same directory where your `model.keras` is located
-* run the cell below
-* copy and paste the output into your terminal to transfer the file.
-
-
-:::
-     
-::: {.cell .code}
-```python
-print("scp -i ~/.ssh/id_rsa_chameleon model.keras cc@" + server_ips[0] + ":~/k8s-ml/app/")
-```
-:::

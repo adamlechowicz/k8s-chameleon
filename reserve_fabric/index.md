@@ -18,10 +18,10 @@ In the Jupyter environment, select File \> New \> Terminal and in this terminal,
 
 
 ```
-git clone https://github.com/teaching-on-testbeds/k8s-ml
+git clone https://github.com/teaching-on-testbeds/k8s
 ```
 
-Then, in the file browser on the left side, open the `k8s-ml` directory, then the `reserve_fabric` directory, and then double-click on the `reserve_fabric.ipynb` notebook to open it.
+Then, in the file browser on the left side, open the `k8s` directory, then the `reserve_fabric` directory, and then double-click on the `reserve_fabric.ipynb` notebook to open it.
 
 If you are prompted about a choice of kernel, you can accept the Python3 kernel.
 

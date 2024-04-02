@@ -27,10 +27,10 @@ _ = remote.execute("source myenv/bin/activate; cd kubespray; pip3 install -r req
 ```python
 # copy config files to correct locations
 remote.execute("mv kubespray/inventory/sample kubespray/inventory/mycluster")
-remote.execute("git clone https://github.com/teaching-on-testbeds/k8s-ml.git")
-remote.execute("cp k8s-ml/config/k8s-cluster.yml kubespray/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml")
-remote.execute("cp k8s-ml/config/inventory.py    kubespray/contrib/inventory_builder/inventory.py")
-remote.execute("cp k8s-ml/config/addons.yml      kubespray/inventory/mycluster/group_vars/k8s_cluster/addons.yml")
+remote.execute("git clone https://github.com/teaching-on-testbeds/k8s.git")
+remote.execute("cp k8s/config/k8s-cluster.yml kubespray/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml")
+remote.execute("cp k8s/config/inventory.py    kubespray/contrib/inventory_builder/inventory.py")
+remote.execute("cp k8s/config/addons.yml      kubespray/inventory/mycluster/group_vars/k8s_cluster/addons.yml")
 ```
 :::
 
@@ -112,7 +112,7 @@ remote.execute("docker run -d -p 5000:5000 --restart always --name registry regi
 # set up docker configuration on all the hosts
 for n in node_conf:
     node = slice.get_node(n['name'])
-    node.execute("sudo wget https://raw.githubusercontent.com/teaching-on-testbeds/k8s-ml/main/config/daemon.json -O /etc/docker/daemon.json")
+    node.execute("sudo wget https://raw.githubusercontent.com/teaching-on-testbeds/k8s/main/config/daemon.json -O /etc/docker/daemon.json")
     node.execute("sudo service docker restart")
 
 ```
@@ -158,23 +158,3 @@ Now, you can open an SSH session as follows:
 
 :::
      
-
-::: {.cell .markdown}
-
-You will also need to know how to transfer a file to the remote host from your local terminal. Later in this exercise, you will want to transfer a file named `model.keras` to the directory `~/k8s-ml/app/` on this remote host.
-
-The easiest way is to use a free file upload service, then download the file on the remote host. For example:
-
-* upload your `model.keras` file to https://www.file.io/
-* copy the download link that is provided, and paste it in the following cell
-* un-comment the second line in the cell
-* run the cell
-
-:::
-     
-::: {.cell .code}
-```python
-download_url = "https://file.io/XXXXXXXXXXXX" # replace this URL
-# _ = remote.execute("wget " + download_url + " -O ~/k8s-ml/app/model.keras")
-```
-:::

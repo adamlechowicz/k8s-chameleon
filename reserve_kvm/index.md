@@ -16,17 +16,17 @@ For this reason, you may not "hold on" to resources for an extended period of ti
 
 This experiment assumes you have already completed [Hello, Chameleon](https://teaching-on-testbeds.github.io/blog/hello-chameleon), so you have set up your Chameleon account, created and added keys to your account, and joined an active project on Chameleon.
 
-From the [Chameleon website](https://chameleoncloud.org/), click on "Experiment \> Jupyter Interface" in the menu. You may be prompted to log in.
+First, you need to get the materials for this experiment.
 
-In the Jupyter environment, select File \> New \> Terminal and in this terminal, run
-
+* **Option 1**: Launch the artifact from Trovi. Open the [artifact on Trovi](https://chameleoncloud.org/experiment/share/9bae9a8a-68fa-402c-ae51-41431eb78732), and click "Launch on Chameleon".
+* **Option 2**: From the [Chameleon website](https://chameleoncloud.org/), click on "Experiment \> Jupyter Interface" in the menu. You may be prompted to log in. In the Jupyter environment, select File \> New \> Terminal and in this terminal, run
 
 ```
 cd work
-git clone https://github.com/teaching-on-testbeds/k8s-ml
+git clone https://github.com/teaching-on-testbeds/k8s
 ```
 
-Then, in the file browser on the left side, open the `k8s-ml` directory, then the `reserve_kvm` directory, and then double-click on the `reserve_chameleon.ipynb` notebook to open it.
+Once you have retrieved these materials, in the file browser on the left side, open the `k8s` directory, then the `reserve_kvm` directory, and then double-click on the `reserve_chameleon.ipynb` notebook to open it.
 
 If you are prompted about a choice of kernel, you can accept the Python3 kernel.
 
