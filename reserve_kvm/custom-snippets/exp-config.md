@@ -163,6 +163,7 @@ Finally, we need to configure our resources, including software package installa
 
 ::: {.cell .code}
 ```python
+import time
 for i, n in enumerate(node_conf):
     remote = server_remotes[i]
     # enable forwarding
@@ -170,6 +171,11 @@ for i, n in enumerate(node_conf):
     remote.run(f"sudo firewall-cmd --zone=trusted --add-source=192.168.0.0/16")
     remote.run(f"sudo firewall-cmd --zone=trusted --add-source=172.16.0.0/12")
     remote.run(f"sudo firewall-cmd --zone=trusted --add-source=10.0.0.0/8")
+    remote.run(f"sudo firewall-cmd --zone=trusted --add-source=127.0.0.0/8")
+    # these are required for etcd
+    remote.run(f"sudo firewall-cmd --zone=public --add-port=2379/tcp")
+    remote.run(f"sudo firewall-cmd --zone=public --add-port=2380/tcp")
+    time.sleep(3)
 ```
 :::
 
