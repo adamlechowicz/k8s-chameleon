@@ -173,8 +173,8 @@ for i, n in enumerate(node_conf):
     remote.run(f"sudo firewall-cmd --zone=trusted --add-source=10.0.0.0/8")
     remote.run(f"sudo firewall-cmd --zone=trusted --add-source=127.0.0.0/8")
     # these are required for etcd
-    remote.run(f"sudo firewall-cmd --zone=public --add-port=2379/tcp")
-    remote.run(f"sudo firewall-cmd --zone=public --add-port=2380/tcp")
+    remote.run(f"sudo firewall-cmd --zone=public --add-port=4001/tcp")
+    remote.run(f"sudo firewall-cmd --zone=public --add-port=2379-2380/tcp")
     time.sleep(3)
 ```
 :::

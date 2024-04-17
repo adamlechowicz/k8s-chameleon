@@ -12,11 +12,15 @@ Now that are resources are "up", we will use Kubespray, a software utility for p
 
 :::
 
+::: {.cell .code}
+```python
+remote = chi.ssh.Remote(server_ips[0])
+```
+:::
 
 ::: {.cell .code}
 ```python
 # install Python libraries required for Kubespray
-remote = chi.ssh.Remote(server_ips[0])
 remote.run("virtualenv -p python3 myenv")
 remote.run("git clone --branch release-2.22 https://github.com/kubernetes-sigs/kubespray.git")
 remote.run("source myenv/bin/activate; cd kubespray; pip3 install -r requirements.txt")
