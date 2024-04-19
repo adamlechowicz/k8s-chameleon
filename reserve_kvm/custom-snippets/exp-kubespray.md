@@ -131,6 +131,18 @@ remote.run("docker run hello-world")
 :::
 
 
+::: {.cell .markdown}
+
+We will also disable the firewall on the primary node:
+
+:::
+
+::: {.cell .code}
+```python
+remote.run("sudo systemctl stop firewalld.service")
+```
+:::
+
 
 ::: {.cell .markdown}
 

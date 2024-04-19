@@ -215,10 +215,3 @@ for port in chi.network.list_ports():
 :::
 
 
-::: {.cell .code}
-```python
-primary_remote.run(f"sudo firewall-cmd --zone=trusted --add-port=32000/tcp --permanent")
-```
-:::
-
-
