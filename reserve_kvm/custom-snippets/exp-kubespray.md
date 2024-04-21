@@ -62,6 +62,35 @@ for physical_ip in physical_ips:
 :::
 
 
+::: {.cell .markdown}
+
+The following cell will actually build the cluster. It will take a long time, and you may see many warnings in the output - that's OK. The instructions below explain how to tell whether it was successful or not.
+
+The output will be very long, so it will be truncated by default. When you see
+
+```
+Output of this cell has been trimmed on the initial display.
+Displaying the first 50 top outputs.
+Click on this message to get the complete output.
+```
+
+at the end, click in order to see the rest of the output.
+
+When the process is finished, you will see a "PLAY RECAP" in the output (near the end):
+
+```
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node-0                     : ok=752  changed=149  unreachable=0    failed=0    skipped=1276 rescued=0    ignored=8   
+node-1                     : ok=652  changed=136  unreachable=0    failed=0    skipped=1124 rescued=0    ignored=3   
+node-2                     : ok=535  changed=112  unreachable=0    failed=0    skipped=797  rescued=0    ignored=2   
+
+```
+
+Make sure that each node shows `failed=0`. If not, you should re-run the cell to re-try the failed parts.
+
+:::
+
 ::: {.cell .code}
 ```python
 # build the cluster
@@ -127,19 +156,6 @@ for physical_ip in physical_ips:
 ```python
 # check configuration
 remote.run("docker run hello-world")
-```
-:::
-
-
-::: {.cell .markdown}
-
-We will also disable the firewall on the primary node:
-
-:::
-
-::: {.cell .code}
-```python
-remote.run("sudo systemctl stop firewalld.service")
 ```
 :::
 
