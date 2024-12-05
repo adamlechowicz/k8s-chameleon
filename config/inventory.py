@@ -67,7 +67,7 @@ CONFIG_FILE = os.environ.get("CONFIG_FILE", "./inventory/sample/hosts.yaml")
 KUBE_CONTROL_HOSTS = int(os.environ.get("KUBE_CONTROL_HOSTS",
                          os.environ.get("KUBE_MASTERS", 1)))
 # Reconfigures cluster distribution at scale
-SCALE_THRESHOLD = int(os.environ.get("SCALE_THRESHOLD", 50))
+SCALE_THRESHOLD = int(os.environ.get("SCALE_THRESHOLD", 100))
 MASSIVE_SCALE_THRESHOLD = int(os.environ.get("MASSIVE_SCALE_THRESHOLD", 200))
 
 DEBUG = get_var_as_bool("DEBUG", True)
@@ -104,8 +104,8 @@ class KubesprayInventory(object):
             etcd_hosts_count = 3 if len(self.hosts.keys()) >= 3 else 1
             self.set_etcd(list(self.hosts.keys())[-etcd_hosts_count:])
             if len(self.hosts) >= SCALE_THRESHOLD:
-                self.set_kube_control_plane(list(self.hosts.keys())[
-                    etcd_hosts_count:(etcd_hosts_count + KUBE_CONTROL_HOSTS)])
+                self.set_kube_control_plane(
+                  list(self.hosts.keys())[:KUBE_CONTROL_HOSTS])
             else:
                 self.set_kube_control_plane(
                   list(self.hosts.keys())[:KUBE_CONTROL_HOSTS])
