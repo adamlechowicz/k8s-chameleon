@@ -102,7 +102,7 @@ class KubesprayInventory(object):
             self.set_all(self.hosts)
             self.set_k8s_cluster()
             etcd_hosts_count = 3 if len(self.hosts.keys()) >= 3 else 1
-            self.set_etcd(list(self.hosts.keys())[:etcd_hosts_count])
+            self.set_etcd(list(self.hosts.keys())[-etcd_hosts_count:])
             if len(self.hosts) >= SCALE_THRESHOLD:
                 self.set_kube_control_plane(list(self.hosts.keys())[
                     etcd_hosts_count:(etcd_hosts_count + KUBE_CONTROL_HOSTS)])
@@ -111,7 +111,7 @@ class KubesprayInventory(object):
                   list(self.hosts.keys())[:KUBE_CONTROL_HOSTS])
             self.set_kube_node(self.hosts.keys())
             if len(self.hosts) >= SCALE_THRESHOLD:
-                self.set_calico_rr(list(self.hosts.keys())[:etcd_hosts_count])
+                self.set_calico_rr(list(self.hosts.keys())[-etcd_hosts_count:])
         else:  # Show help if no options
             self.show_help()
             sys.exit(0)
